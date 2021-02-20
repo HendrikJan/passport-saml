@@ -47,7 +47,7 @@ describe("Signatures", function () {
       pathToXml: string,
       shouldErrorWith: string | false,
       amountOfSignaturesChecks: number | undefined,
-      options: Partial<SamlOptions> = {}
+      options?: Partial<SamlOptions>
     ) => {
       //== Create a body based on an XML and run the test
       return testOneResponseBody(
@@ -255,12 +255,12 @@ describe("Signatures", function () {
 
     it("CRLF line endings", (done) => {
       const body = makeBody(samlResponseXml.replace(/\n/g, "\r\n"));
-      testOneResponseBody(body, false, 1, {})(done);
+      testOneResponseBody(body, false, 1)(done);
     });
 
     it("CR line endings", (done) => {
       const body = makeBody(samlResponseXml.replace(/\n/g, "\r"));
-      testOneResponseBody(body, false, 1, {})(done);
+      testOneResponseBody(body, false, 1)(done);
     });
   });
 });
